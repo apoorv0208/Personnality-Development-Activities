@@ -1,0 +1,17 @@
+{
+    "name": "PDA Web App",
+    "short_name": "PDA",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#121212",
+    "theme_color": "#1e293b",
+    "description": "A web application for Professional Development Activity",
+    "icons": [
+      {
+        "src": "/favicon.ico",
+        "sizes": "512x512",
+        "type": "image/x-icon"
+      }
+    ]
+}
+  
