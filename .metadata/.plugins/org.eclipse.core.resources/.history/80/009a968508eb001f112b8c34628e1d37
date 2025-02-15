@@ -1,0 +1,75 @@
+package com.example.demo;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Entity
+public class Reports 
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String reportName;
+
+    @Lob
+    private byte[] reportFile;
+
+    private LocalDateTime uploadedAt;
+
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    public void setReportName(String reportName) {
+        this.reportName = reportName;
+    }
+
+    public byte[] getReportFile() {
+        return reportFile;
+    }
+
+    public void setReportFile(byte[] reportFile) {
+        this.reportFile = reportFile;
+    }
+
+    public LocalDateTime getUploadedAt() {
+        return uploadedAt;
+    }
+
+    public void setUploadedAt(LocalDateTime uploadedAt) {
+        this.uploadedAt = uploadedAt;
+    }
+}
+
+interface ReportRepository extends JpaRepository<Reports, Integer> {
+}
+
+@Service
+class ReportService 
+{
+
+    @Autowired
+    private ReportRepository reportRepository;
+
+    public List<Reports> getAllReports() {
+        return reportRepository.findAll();
+    }
+
+    public Reports getReportById(int id) {
+        return reportRepository.findById(id).orElse(null);
+    }
+}
